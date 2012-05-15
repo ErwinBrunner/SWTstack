@@ -1,6 +1,69 @@
-*.class
+import java.util.*;
 
-# Package Files #
-*.jar
-*.war
-*.ear
+public class MyStack {
+  private Vector<Integer> stack;
+
+	/**
+	 * 
+	 * 
+	 */
+	public MyStack() {
+		stack = new Vector<Integer>(5);
+	}
+
+	public void push(int x){
+		if (x < 0) {
+			throw new IllegalArgumentException();
+		}
+		if (stack.size() < stack.capacity()) {
+			stack.add(x);
+		} else {
+			throw new IndexOutOfBoundsException();
+		}
+	}
+
+	/**
+	 * 
+	 */
+	public int pop() {
+		if (stack.size() > 0) {
+			int res = stack.get(stack.size() - 1);
+			stack.remove(stack.size() - 1);
+			return res;
+		}
+		throw new EmptyStackException();
+	}
+
+	public int top() {
+		if (stack.size() > 0) {
+			return stack.get(stack.size() - 1);
+		}
+		throw new EmptyStackException();
+	}
+
+	public int size() {
+		return stack.size();
+	}
+
+	public void makeEmpty() {
+		stack.removeAllElements();
+	}
+   
+	/**
+	 * Test if the stack is empty
+	 * @return:
+	 */
+	public boolean isEmpty() {
+		if (stack.size() == 0) {
+			return true;
+		}
+		return false;
+	}
+
+	public boolean isFull() {
+		if (stack.size() == stack.capacity()) {
+			return true;
+		}
+		return false;
+	}
+}
